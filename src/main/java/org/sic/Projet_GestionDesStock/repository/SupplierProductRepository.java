@@ -1,3 +1,4 @@
+package org.sic.Projet_GestionDesStock.repository;
 //<<<<<<< HEAD
 ////package org.sic.Projet_GestionDesStock.repository;
 ////
