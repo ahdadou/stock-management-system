@@ -3,14 +3,18 @@ package org.sic.Projet_GestionDesStock.services;
 import java.util.List;
 
 import org.sic.Projet_GestionDesStock.entity.Ordere;
+import org.sic.Projet_GestionDesStock.repository.OrdereRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OrdereService {
 
+	@Autowired private OrdereRepository ordereRepository;
+
 	// Add Item
 	public Ordere saveItem(Ordere category) {
-		return null;
+		return ordereRepository.save(category);
 	}
 
 //    Get all Items
