@@ -3,7 +3,9 @@ package org.sic.Projet_GestionDesStock.services;
 import java.util.List;
 
 import org.sic.Projet_GestionDesStock.entity.Customer;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CustomerService {
 
 //    Add Item

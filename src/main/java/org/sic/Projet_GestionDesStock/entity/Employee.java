@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;

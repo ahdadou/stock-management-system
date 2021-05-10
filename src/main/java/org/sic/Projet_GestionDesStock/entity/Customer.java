@@ -38,6 +38,6 @@ public class Customer {
 	@CreationTimestamp
 	private Date createDate;
 	@OneToMany(mappedBy = "customer")
-	private List<Ordere> orderes;
+	private List<Ordere> ordere;
 
 }

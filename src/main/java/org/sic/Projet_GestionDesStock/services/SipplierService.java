@@ -3,7 +3,9 @@ package org.sic.Projet_GestionDesStock.services;
 import java.util.List;
 
 import org.sic.Projet_GestionDesStock.entity.Supplier;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SipplierService {
 
 //    Add Item
