@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,14 +18,13 @@ public class Ordere{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @ManyToOne
-    private Product product;
+
     @ManyToOne
     private Customer customer;
-    private double price;
-    private int quantity;
+    @OneToMany(mappedBy = "ordere")
+    private List<OrderProduct> orderProducts;
     @CreationTimestamp
-    private Date operationDate;
+    private Date orderDate;
 
 
 }

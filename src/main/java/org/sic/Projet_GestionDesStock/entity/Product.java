@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -31,6 +32,11 @@ public class Product {
     private int quantityStock;
     @ManyToOne
     private Category category;
+    @OneToMany(mappedBy = "product")
+    private List<OrderProduct> orderProducts;
+
+    @OneToMany
+    private List<SupplierProduct> supplierProducts;
 
 
 }
