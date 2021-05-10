@@ -2,27 +2,27 @@ package org.sic.Projet_GestionDesStock.services;
 
 import java.util.List;
 
-import org.sic.Projet_GestionDesStock.entity.Command;
-import org.sic.Projet_GestionDesStock.repository.CommandRepository;
+import org.sic.Projet_GestionDesStock.entity.SupplierProduct;
+import org.sic.Projet_GestionDesStock.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class CommandService {
 
 	@Autowired
-	CommandRepository commandRepository;
+	SupplierRepository supplierRepository;
 
 //    Add Item
-	public Command saveItem(Command Command) {
-		return commandRepository.save(Command);
+	public SupplierProduct saveItem(SupplierProduct Command) {
+		return supplierRepository.save(Command);
 	}
 
 //    Get all Items
-	public List<Command> getAll() {
+	public List<SupplierProduct> getAll() {
 		return null;
 	}
 
 //    Get Item By Id
-	public Command getById(int id) {
+	public SupplierProduct getById(int id) {
 		return null;
 	}
 
@@ -33,7 +33,7 @@ public class CommandService {
 	}
 
 //    Update Item
-	public Command updateItem() {
+	public SupplierProduct updateItem() {
 		return null;
 	}
 
