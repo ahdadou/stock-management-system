@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -29,6 +30,8 @@ public class Supplier {
     private String address;
     @CreationTimestamp
     private Date createDate;
+    @OneToMany(mappedBy = "supplier")
+    private List<Command> commands;
 
 
 }

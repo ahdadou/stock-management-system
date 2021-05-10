@@ -20,7 +20,7 @@ public class Ordere{
     @ManyToOne
     private Product product;
     @ManyToOne
-    private Customer client;
+    private Customer customer;
     private double price;
     private int quantity;
     @CreationTimestamp
