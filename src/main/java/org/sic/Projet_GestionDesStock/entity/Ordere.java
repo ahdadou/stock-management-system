@@ -16,11 +16,11 @@ public class Ordere{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id_order;
+    private long id;
     @ManyToOne
-    private Produit produit;
+    private Product product;
     @ManyToOne
-    private Client client;
+    private Customer client;
     private double price;
     private int quantity;
     @CreationTimestamp

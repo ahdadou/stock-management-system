@@ -16,8 +16,8 @@ import java.util.Date;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_product;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     @Column(length = 25)
     private String name;
     @Lob
@@ -29,8 +29,8 @@ public class Product {
     private Date updateDate;
     private String image;
     private int quantityStock;
-//    @ManyToOne
-//    private Categories category;
+    @ManyToOne
+    private Category category;
 
 
 }

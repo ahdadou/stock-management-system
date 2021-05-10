@@ -1,18 +1,27 @@
 package org.sic.Projet_GestionDesStock.services;
 
-import org.sic.Projet_GestionDesStock.entity.Product;
+import org.sic.Projet_GestionDesStock.entity.Category;
+import org.sic.Projet_GestionDesStock.entity.Ordere;
+import org.sic.Projet_GestionDesStock.entity.Ordere;
 
 import java.util.List;
 
-public class ProductService {
+public class OrdereService {
+
+
+
+    //    Add Item
+    public Ordere saveItem(Ordere category){
+        return  null;
+    }
 
 //    Get all Items
-    public List<Product> getAll(){
+    public List<Ordere> getAll(){
         return  null;
     }
 
 //    Get Item By Id
-    public Product getById(int id){
+    public Ordere getById(int id){
         return  null;
     }
 
@@ -23,7 +32,7 @@ public class ProductService {
     }
 
 //    Update Item
-    public Product updateItem(){
+    public Ordere updateItem(){
         return  null;
     }
 

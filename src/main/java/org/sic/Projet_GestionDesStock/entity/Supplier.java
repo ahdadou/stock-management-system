@@ -16,7 +16,7 @@ public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id_customer;
+    private long id;
     @Column(length = 25)
     private String firstname;
     @Column(length = 25)
@@ -26,7 +26,7 @@ public class Supplier {
     @Column(length = 25)
     private String phone;
     @Column(length = 50)
-    private String adress;
+    private String address;
     @CreationTimestamp
     private Date createDate;
 

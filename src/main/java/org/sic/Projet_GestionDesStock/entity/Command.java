@@ -15,11 +15,11 @@ import java.util.Date;
 public class Command {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id_command;
+    private long id;
     @ManyToOne
-    private Produit produit;
+    private Product product;
     @ManyToOne
-    private Fournisseur fournisseur;
+    private Supplier supplier;
     private double price;
     private int quantity;
     @CreationTimestamp
