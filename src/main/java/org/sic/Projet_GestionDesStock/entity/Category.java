@@ -17,7 +17,8 @@ public class Category {
     private long id;
     @Column(length = 25)
     private String name;
-    @OneToMany(mappedBy = "category")
+
+    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
     private List<Product> products;
 
 
