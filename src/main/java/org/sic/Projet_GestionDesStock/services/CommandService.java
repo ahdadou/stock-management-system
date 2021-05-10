@@ -3,12 +3,17 @@ package org.sic.Projet_GestionDesStock.services;
 import java.util.List;
 
 import org.sic.Projet_GestionDesStock.entity.Command;
+import org.sic.Projet_GestionDesStock.repository.CommandRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class CommandService {
 
+	@Autowired
+	CommandRepository commandRepository;
+
 //    Add Item
 	public Command saveItem(Command Command) {
-		return null;
+		return commandRepository.save(Command);
 	}
 
 //    Get all Items
@@ -23,7 +28,7 @@ public class CommandService {
 
 //    Delete Item By Id
 
-	public void deeleteById() {
+	public void deleteById() {
 
 	}
 
