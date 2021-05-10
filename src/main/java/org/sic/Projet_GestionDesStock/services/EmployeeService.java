@@ -2,7 +2,6 @@ package org.sic.Projet_GestionDesStock.services;
 
 import java.util.List;
 
-import org.sic.Projet_GestionDesStock.entity.Category;
 import org.sic.Projet_GestionDesStock.entity.Employee;
 import org.sic.Projet_GestionDesStock.repository.EmployeeRepoitory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ public class EmployeeService {
 
 	// Get all Items
 	public List<Employee> getAll() {
-
 		return employeeRepoitory.findAll();
 	}
 
@@ -35,7 +33,7 @@ public class EmployeeService {
 	}
 
 //    Update Item
-	public Category updateItem(Employee employee) {
-		return null;
+	public Employee updateItem(Employee employee) {
+		return employeeRepoitory.save(employee);
 	}
 }
