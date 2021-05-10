@@ -12,17 +12,19 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Commande {
+public class Ordere{
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long id_order;
     @ManyToOne
-    private Product product;
+    private Produit produit;
     @ManyToOne
-    private Supplier supplier;
+    private Client client;
     private double price;
     private int quantity;
     @CreationTimestamp
     private Date operationDate;
+
 
 }

@@ -7,7 +7,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
@@ -17,7 +16,7 @@ public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long id_customer;
     @Column(length = 25)
     private String firstname;
     @Column(length = 25)
@@ -27,7 +26,7 @@ public class Supplier {
     @Column(length = 25)
     private String phone;
     @Column(length = 50)
-    private String address;
+    private String adress;
     @CreationTimestamp
     private Date createDate;
 

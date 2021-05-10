@@ -10,10 +10,10 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Categorie {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long id_category;
     @Column(length = 25)
     private String name;
 
