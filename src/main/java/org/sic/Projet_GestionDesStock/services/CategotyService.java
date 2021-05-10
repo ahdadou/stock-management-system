@@ -25,18 +25,18 @@ public class CategotyService {
 		return categoryRepository.findAll();
 	}
 
-//    Get Item By Id
+	// Get Item By Id
 	public Category getById(int id) {
 		return categoryRepository.findById((long) id).get();
 	}
 
-//    Delete Item By Id
+	// Delete Item By Id
 
 	public void deeleteById(int id) {
 		categoryRepository.deleteById((long) id);
 	}
 
-//    Update Item
+	// Update Item
 	public Category updateItem(Category category) {
 		return null;
 	}

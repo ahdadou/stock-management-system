@@ -15,16 +15,19 @@ public class SupplierProductService {
 	private SupplierProductRepository supplierProductRepository;
 
 	// Add Item
+
 	public SupplierProduct saveItem(SupplierProduct supplierProduct) {
 		return supplierProductRepository.save(supplierProduct);
 	}
 
 	// Get all Items
+
 	public List<SupplierProduct> getAll() {
 		return supplierProductRepository.findAll();
 	}
 
 	// Get Item By Id
+
 	public SupplierProduct getById(long id) {
 		return supplierProductRepository.findById(id).get();
 	}
@@ -37,6 +40,7 @@ public class SupplierProductService {
 	}
 
 	// Update Item
+
 	public SupplierProduct updateItem(SupplierProduct supplierProduct) {
 		return supplierProductRepository.save(supplierProduct);
 
