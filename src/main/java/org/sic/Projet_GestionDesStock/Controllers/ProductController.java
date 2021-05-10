@@ -26,7 +26,6 @@ public class ProductController {
 	public Product getById(long id) {
 		return productService.getById(id);
 	}
-
 //	    Delete Item By Id
 
 	public void deleteById(long id) {

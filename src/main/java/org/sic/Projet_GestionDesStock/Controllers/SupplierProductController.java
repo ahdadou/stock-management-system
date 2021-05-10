@@ -12,45 +12,41 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("SupplierProduct")
+@RestController()
 public class SupplierProductController {
 	@Autowired
 	private SupplierProductService supplierProductService;
 
 	// Add Item
 
-	@PostMapping("add")
+	@PostMapping(value = "/SP/add")
 	public SupplierProduct saveItem(@RequestBody SupplierProduct supplierProduct) {
 		return supplierProductService.saveItem(supplierProduct);
 	}
 
 	// Get all Items
-
-	@GetMapping("list-SupplierProduct")
+	@GetMapping(value = "/SupplierProduct/list")
 	public List<SupplierProduct> getAll() {
 		return supplierProductService.getAll();
 	}
 
 	// Get Item By Id
 
-	@GetMapping("SupplierProduct/{id}")
+	@GetMapping(value = "/SupplierProduct/{id}")
 	public SupplierProduct getById(@PathVariable long id) {
 		return supplierProductService.getById(id);
 	}
 
 	// Delete Item By Id
-	@DeleteMapping("SupplierProduct/{id}")
+	@DeleteMapping(value = "/SupplierProduct/{id}")
 	public void deleteById(@PathVariable long id) {
 		supplierProductService.deleteById(id);
-
 	}
 
 	// Update Item
-
-	@PostMapping("update")
+	@PostMapping(value = "/SupplierProduct/update")
 	public SupplierProduct updateItem(@RequestBody SupplierProduct supplierProduct) {
 		return supplierProductService.updateItem(supplierProduct);
-
 	}
 
 }
