@@ -13,27 +13,17 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Supplier {
-
+public class SupplierProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column(length = 25)
-    private String firstname;
-    @Column(length = 25)
-    private String lastname;
-    @Column(length = 50)
-    private String email;
-    @Column(length = 25)
-    private String phone;
-    @Column(length = 50)
-    private String address;
+    @ManyToOne
+    private Product product;
+    @ManyToOne
+    private Supplier supplier;
+    private double price;
+    private int quantity;
     @CreationTimestamp
-    private Date createDate;
-
-    @OneToMany(mappedBy = "supplier")
-    private List<SupplierProduct> supplierProducts;
-
-
+    private Date operationDate;
 
 }
