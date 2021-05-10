@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class SipplierService {
 
 //    Add Item
-	public Supplier saveItem(Supplier category) {
+	public Supplier saveItem(Supplier supplier) {
 		return null;
 	}
 
