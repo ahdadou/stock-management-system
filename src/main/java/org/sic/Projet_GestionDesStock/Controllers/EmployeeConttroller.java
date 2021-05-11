@@ -20,21 +20,25 @@ public class EmployeeConttroller {
 
 	@Autowired
 	private EmployeeService employeeService;
+	// get all Employees
 
-	@GetMapping(value = "")
+	@GetMapping(value = "/Employees/list")
 	public ResponseEntity<List<Employee>> getAll() {
 		return new ResponseEntity<>(employeeService.getAll(), HttpStatus.OK);
 	}
+	// add Employee
 
-	@PostMapping("Employee")
+	@PostMapping("/Employee/add")
 	public ResponseEntity<?> saveItem(@RequestBody Employee employee) {
 		try {
 			Employee Employees = employeeService.saveItem(employee);
-			return new ResponseEntity<>(res, HttpStatus.OK);
+			return new ResponseEntity<>(Employees, HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>("CAN'T ADD Employee", HttpStatus.BAD_REQUEST);
 		}
 	}
+
+	// add Employee by id
 
 	@GetMapping("/Employee/{id}")
 	public ResponseEntity<?> getEmployeeById(@PathVariable long id) {
@@ -45,19 +49,21 @@ public class EmployeeConttroller {
 			return new ResponseEntity<>("UNSPECTED ERROR OCCURS :  " + ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
+	// update Employee
 
 	@PutMapping("/Employee/update")
-	public ResponseEntity<?> updateEmployee(@RequestBody Employee category) {
+	public ResponseEntity<?> updateEmployee(@RequestBody Employee employee) {
 		try {
-			employeeService.updateItem(category);
-			return new ResponseEntity<>("SUPPLIER UPDATED SUCCESSFULLY", HttpStatus.OK);
+			employeeService.updateItem(employee);
+			return new ResponseEntity<>("Employee UPDATED SUCCESSFULLY", HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>("CAN'T Update Employee", HttpStatus.BAD_REQUEST);
 		}
 	}
+	// delete mployee by id
 
 	@DeleteMapping(value = "/Employee/{id}")
-	public ResponseEntity<?> deleteCategoty(@PathVariable Long id) {
+	public ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
 		try {
 			employeeService.deeleteById(id);
 			return new ResponseEntity<>("Employee DELETED SUCCESSFULLY", HttpStatus.OK);

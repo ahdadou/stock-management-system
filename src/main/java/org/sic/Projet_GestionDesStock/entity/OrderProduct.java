@@ -1,13 +1,14 @@
 package org.sic.Projet_GestionDesStock.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.criterion.Order;
-
-import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
@@ -15,17 +16,14 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderProduct {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    @ManyToOne
-    private Ordere ordere;
-    @ManyToOne
-    private Product product;
-    private double price;
-    private int quantity;
-
-
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	@ManyToOne
+	private Ordere ordere;
+	@ManyToOne
+	private Product product;
+	private double price;
+	private int quantity;
 
 }

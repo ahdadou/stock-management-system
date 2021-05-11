@@ -24,7 +24,7 @@ public class SupplierController {
 	public ResponseEntity<Object> saveItem(@RequestBody Supplier supplier) {
 		try {
 			sipplierService.saveItem(supplier);
-			return new ResponseEntity<>("PRODUCT ADDED SUCCESSFULLY", HttpStatus.OK);
+			return new ResponseEntity<>("SUPPLIER ADDED SUCCESSFULLY", HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>("UNSPECTED ERROR OCCURS : " + ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}
