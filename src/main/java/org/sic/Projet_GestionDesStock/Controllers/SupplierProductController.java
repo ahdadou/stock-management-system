@@ -19,7 +19,6 @@ public class SupplierProductController {
 	private SupplierProductService supplierProductService;
 
 	// Add Item
-
 	@PostMapping(value = "/SupplierProduct/add")
 	public ResponseEntity<Object> saveItem(@RequestBody SupplierProduct supplierProduct) {
 		try {
@@ -70,7 +69,7 @@ public class SupplierProductController {
 			supplierProductService.updateItem(supplierProduct);
 			return new ResponseEntity<>("ORDER UPDATED SUCCESSFULLY", HttpStatus.OK);
 		} catch (Exception ex) {
-			return new ResponseEntity<>("CAN'T ORDER SUPPLIER" + ex.getMessage(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("CAN'T UPDATE ORDER :" + ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 
