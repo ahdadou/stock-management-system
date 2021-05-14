@@ -23,6 +23,8 @@ public class OrderProduct {
     @ManyToOne
     private Product product;
     private double price;
+    private double totalHT;
+    private double totalTTC;
     private int quantity;
 
 

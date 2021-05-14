@@ -25,6 +25,7 @@ public class Ordere{
     private List<OrderProduct> orderProducts;
     @CreationTimestamp
     private Date orderDate;
+    private double total;
 
 
 }

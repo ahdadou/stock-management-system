@@ -6,6 +6,7 @@ import org.sic.Projet_GestionDesStock.entity.Category;
 import org.sic.Projet_GestionDesStock.entity.Product;
 import org.sic.Projet_GestionDesStock.services.CategotyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RequestMapping("/category")
 @RestController
+@CrossOrigin("*")
 public class CategoryController {
 
     @Autowired private CategotyService categotyService;
@@ -27,19 +29,19 @@ public class CategoryController {
 
     @PostMapping("")
     public  ResponseEntity<?> addCategory(@RequestBody Category category){
-     try{
-         Category res = categotyService.saveItem(category);
-         return new ResponseEntity<>(res,HttpStatus.OK);
-     }catch (Exception ex){
-         return new ResponseEntity<>("CAN'T ADD CATEGORY",HttpStatus.BAD_REQUEST);
-     }
+        try{
+            Category res = categotyService.saveItem(category);
+            return new ResponseEntity<>(res,HttpStatus.OK);
+        }catch (Exception ex){
+            return new ResponseEntity<>("CAN'T ADD CATEGORY",HttpStatus.BAD_REQUEST);
+        }
     }
 
 
     @GetMapping("/products/{id}")
     public ResponseEntity<?> getProductsbyCategory(@PathVariable long id){
         try{
-           List<Product> products = categotyService.getProducts(id);
+            List<Product> products = categotyService.getProducts(id);
             return new ResponseEntity<>(products,HttpStatus.OK);
         }catch (Exception ex){
             return new ResponseEntity<>("CAN'T GET PRODUCTS => "+ex.getMessage(),HttpStatus.BAD_REQUEST);
@@ -60,11 +62,12 @@ public class CategoryController {
 
     @DeleteMapping(value="/{id}")
     public ResponseEntity<?> deleteCategoty(@PathVariable Long id){
-        System.out.println("deletee");
         try{
             categotyService.deleteById(id);
-            return new ResponseEntity<>("DELETE SUCCESSFULLY",HttpStatus.OK);
+            System.out.println("deletee");
+            return new ResponseEntity<>(new Category(),HttpStatus.OK);
         }catch (Exception ex){
+            System.out.println("deletee errr");
             return new ResponseEntity<>("CAN'T DELETE CATEGORY",HttpStatus.BAD_REQUEST);
         }
     }

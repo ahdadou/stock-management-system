@@ -29,7 +29,7 @@ public class EmployeeConttroller {
 	@PostMapping("Employee")
 	public ResponseEntity<?> saveItem(@RequestBody Employee employee) {
 		try {
-			Employee Employees = employeeService.saveItem(employee);
+			Employee res = employeeService.saveItem(employee);
 			return new ResponseEntity<>(res, HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>("CAN'T ADD Employee", HttpStatus.BAD_REQUEST);

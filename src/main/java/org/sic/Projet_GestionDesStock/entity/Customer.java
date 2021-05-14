@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
@@ -34,10 +35,13 @@ public class Customer {
 	private String phone;
 	@Column(length = 50)
 	private String address;
+	@Column(length = 50)
+	private String city;
 	@Column(updatable = false)
 	@CreationTimestamp
 	@Temporal(TemporalType.DATE)
 	private Date createDate;
+	@JsonIgnore
 	@OneToMany(mappedBy = "customer")
 	private List<Ordere> ordere;
 
