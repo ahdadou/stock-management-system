@@ -1,27 +1,20 @@
 package org.sic.Projet_GestionDesStock.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
-<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-=======
->>>>>>> fdc94cb9eb82825493c6d669c507a4f5ae5ed369
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Data
@@ -32,11 +25,11 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(length = 25, unique = true)
+	@Column(length = 25)
 	private String firstname;
 	@Column(length = 25)
 	private String lastname;
-	@Column(length = 50, unique = true)
+	@Column(length = 50)
 	private String email;
 	@Column(length = 25)
 	private String phone;
