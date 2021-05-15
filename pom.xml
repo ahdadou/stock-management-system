@@ -47,6 +47,7 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 
 		<dependency>

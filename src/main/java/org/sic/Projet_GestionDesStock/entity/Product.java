@@ -61,6 +61,10 @@ public class Product {
 		this.id = id;
 		this.name = name;
 		this.category = c;
+	}
+
+	public static Product getproudctInfo(long id, String name, Category c) {
+		return new Product(id, name, c);
 
 	}
 

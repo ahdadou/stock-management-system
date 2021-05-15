@@ -1,5 +1,8 @@
 package org.sic.Projet_GestionDesStock.Controllers;
 
+import java.util.List;
+
+import org.sic.Projet_GestionDesStock.entity.Category;
 import org.sic.Projet_GestionDesStock.entity.Product;
 import org.sic.Projet_GestionDesStock.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +66,7 @@ public class ProductController {
 	}
 	// Delete Item By Id
 
-	@DeleteMapping(value = "/{id}")
+	@DeleteMapping(value = "/product/{id}")
 	public ResponseEntity<Object> deleteById(@PathVariable long id) {
 		try {
 			productService.deleteById(id);
@@ -74,14 +77,24 @@ public class ProductController {
 	}
 
 	// Update Item
-	@PutMapping(value = "/update")
+	@PutMapping(value = "/product/update")
 	public ResponseEntity<Object> updateItem(@RequestBody Product product) {
 		try {
-			Product poduit = productService.saveItem(product);
+			productService.saveItem(product);
 			return new ResponseEntity<>("Product is updated successfully", HttpStatus.OK);
 		} catch (Exception ex) {
 
 			return new ResponseEntity<>("CAN'T UPDATE PRODUCT" + ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}
+	}
+
+	@GetMapping(value = "/product/category/{id}")
+	public Category getByIdCategory(@PathVariable long id) {
+		return productService.getByIdCategory(id);
+	}
+
+	@GetMapping(value = "/product/supplier/{id}")
+	public List<Product> ProudctBYSupplierId(@PathVariable long id) {
+		return productService.ProudctBYSupplierId(id);
 	}
 }

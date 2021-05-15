@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.sic.Projet_GestionDesStock.entity.Category;
 import org.sic.Projet_GestionDesStock.entity.Product;
 import org.sic.Projet_GestionDesStock.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,8 @@ public class ProductService {
 		return productRepository.findById(id).get();
 	}
 
-	public Product getByIdCategory(long id) {
-		return productRepository.findById(id).get();
+	public Category getByIdCategory(long id) {
+		return productRepository.products(id);
 	}
 
 	// Delete Item By Id
@@ -45,6 +46,10 @@ public class ProductService {
 	// Update Item
 	public Product updateItem(Product product) {
 		return productRepository.save(product);
+	}
+
+	public List<Product> ProudctBYSupplierId(long id) {
+		return productRepository.ProudctBYSupplierId(id);
 	}
 
 }
