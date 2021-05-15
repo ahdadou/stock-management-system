@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 	Optional<Category> findByName(String name);
 
-    @Query(value = "SELECT u.* FROM Product u where u.category_id = :id",nativeQuery = true)
-    List<Product> getProductsId(@Param("id") long id);
+	@Query(value = "SELECT u.* FROM Product u where u.category_id = :id", nativeQuery = true)
+	List<Product> getProductsId(@Param("id") long id);
+
 }

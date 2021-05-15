@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -16,6 +17,9 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -43,11 +47,21 @@ public class Product {
 	private String image;
 	private int quantityStock;
 	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name = "category_id")
 	private Category category;
+	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	private List<OrderProduct> orderProducts;
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	private List<SupplierProduct> supplierProducts;
+
+	public Product(long id, String name, Category c) {
+		this.id = id;
+		this.name = name;
+		this.category = c;
+
+	}
 
 }
