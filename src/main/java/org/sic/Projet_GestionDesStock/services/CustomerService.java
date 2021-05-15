@@ -42,6 +42,10 @@ public class CustomerService {
 		return ordereRepository.getByIdCustomer(idCustomer);
 	}
 
+	//	Get Total For One Order
+	public double getTotalByCustomerId(long id){
+		return ordereRepository.totalByCustomer(id);
+	}
 
 //    Update Item
 //	public Customer updateItem() {

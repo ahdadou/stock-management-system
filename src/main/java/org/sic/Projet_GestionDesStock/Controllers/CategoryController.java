@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/category")
 @RestController
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin("*")
 public class CategoryController {
 
 	@Autowired
@@ -64,11 +64,12 @@ public class CategoryController {
 
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<?> deleteCategoty(@PathVariable Long id) {
-		System.out.println("deletee");
 		try {
 			categotyService.deleteById(id);
-			return new ResponseEntity<>("DELETE SUCCESSFULLY", HttpStatus.OK);
+			System.out.println("deletee");
+			return new ResponseEntity<>(new Category(), HttpStatus.OK);
 		} catch (Exception ex) {
+			System.out.println("deletee errr");
 			return new ResponseEntity<>("CAN'T DELETE CATEGORY", HttpStatus.BAD_REQUEST);
 		}
 	}

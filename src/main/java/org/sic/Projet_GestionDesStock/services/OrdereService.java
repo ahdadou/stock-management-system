@@ -13,25 +13,36 @@ public class OrdereService {
 	@Autowired private OrdereRepository ordereRepository;
 
 	// Add Item
-	public Ordere saveItem(Ordere category) {
-		return ordereRepository.save(category);
+	public Ordere saveItem(Ordere ordere) {
+		return ordereRepository.save(ordere);
 	}
 
 //    Get all Items
 	public List<Ordere> getAll() {
-		return null;
+		return ordereRepository.findAll();
 	}
 
 //    Get Item By Id
-	public Ordere getById(int id) {
-		return null;
+	public Ordere getById(long id) {
+		return ordereRepository.findById(id).get();
 	}
 
 //    Delete Item By Id
-
-	public void deeleteById() {
-
+	public void deleteById(long id) {
+      ordereRepository.deleteById(id);
 	}
+
+//	Get Total For One Order
+//	public double getTotalForOrderById(long id){
+//		return ordereRepository.totalPriceforOrder(id);
+//	}
+
+//	Fet Total Of all Orders
+	public double getTotal(){
+		return  ordereRepository.TotalPrice();
+	}
+
+
 
 //    Update Item
 	public Ordere updateItem() {
