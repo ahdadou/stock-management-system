@@ -76,6 +76,14 @@ public class SupplierController {
 		} catch (Exception ex) {
 			return new ResponseEntity<>("CAN'T UPDATE SUPPLIER" + ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}
+	}
 
+	@GetMapping("/Supplier/product/{id}")
+	public ResponseEntity<Object> SupplierByProudctId(@PathVariable long id) {
+		try {
+			return new ResponseEntity<>(sipplierService.SupplierByProudctId(id), HttpStatus.OK);
+		} catch (Exception ex) {
+			return new ResponseEntity<>("UNSPECTED ERROR OCCURS : " + ex.getMessage(), HttpStatus.BAD_REQUEST);
+		}
 	}
 }

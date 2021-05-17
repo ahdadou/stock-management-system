@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,7 +40,7 @@ public class Supplier {
 	@CreationTimestamp
 	private Date createDate;
 	@OneToMany(mappedBy = "supplier")
-	@JsonManagedReference
+	@JsonIgnore
 	private List<SupplierProduct> supplierProducts;
 
 }
