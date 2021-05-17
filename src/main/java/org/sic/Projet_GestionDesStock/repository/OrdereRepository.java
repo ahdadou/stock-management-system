@@ -16,13 +16,15 @@ public interface OrdereRepository extends JpaRepository<Ordere, Long> {
     @Query(value = "SELECT u.* FROM Ordere u where u.customer_id = :id",nativeQuery = true)
     List<Ordere> getByIdCustomer(@Param("id") long idCustomer);
 
+
 //    @Query(value = "select sum(o.price*o.quantity) from order_product o where o.ordere_id = id;",nativeQuery = true)
 //    double totalPriceforOrder(@Param("id") long idOrder);
 
-    @Query(value = "select sum(o.total) from ordere o",nativeQuery = true)
-    double TotalPrice();
+	@Query(value = "select sum(o.total) from ordere o", nativeQuery = true)
+	double TotalPrice();
 
-    @Query(value = "select sum(o.total) from ordere o where o.customer_id = :id",nativeQuery = true)
-    double totalByCustomer(@Param("id") long idCustomer);
+
+	@Query(value = "select sum(o.total) from ordere o where o.customer_id = :id", nativeQuery = true)
+	double totalByCustomer(@Param("id") long idCustomer);
 
 }

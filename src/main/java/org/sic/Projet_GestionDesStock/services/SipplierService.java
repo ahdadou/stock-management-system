@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class SipplierService {
 
-
 	@Autowired
 	private SupplierRepository supplierRepository;
 	// Add Item
@@ -25,12 +24,9 @@ public class SipplierService {
 		return supplierRepository.findAll();
 	}
 
-
-
 	public Supplier getById(long id) {
 		return supplierRepository.findById(id).get();
 	}
-
 
 	// Delete Item By Id
 
@@ -42,6 +38,11 @@ public class SipplierService {
 
 	public Supplier updateItem(Supplier supplier) {
 		return supplierRepository.save(supplier);
+
+	}
+
+	public List<Supplier> SupplierByProudctId(long idProudct) {
+		return supplierRepository.SupplierByProudctId(idProudct);
 
 	}
 }

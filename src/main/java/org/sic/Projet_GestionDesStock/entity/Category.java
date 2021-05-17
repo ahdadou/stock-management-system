@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,8 +29,7 @@ public class Category {
 	private long id;
 	@Column(length = 25)
 	private String name;
-
+	@JsonManagedReference
 	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
 	private List<Product> products;
-
 }
