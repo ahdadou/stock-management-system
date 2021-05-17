@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -45,6 +46,7 @@ public class Product {
 	@ManyToOne
 	private Category category;
 	@OneToMany(mappedBy = "product")
+	@JsonIgnore
 	private List<OrderProduct> orderProducts;
 
 	@OneToMany(mappedBy = "product")

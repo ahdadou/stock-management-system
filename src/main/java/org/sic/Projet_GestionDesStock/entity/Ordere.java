@@ -26,6 +26,7 @@ public class Ordere{
     @CreationTimestamp
     private Date orderDate;
     private double total;
+    private double totalht;
 
 
 }

@@ -16,7 +16,12 @@ public class OrderRequest {
 @Data @NoArgsConstructor
 class ProductRequest{
     private long idProduct;
-    private long prixht;
+    private double prixht;
+    private double totalHT;
+    private double reduction;
+    private double totalTTC;
     private int quantity;
-    private int totalTTC;
+    private double tva;
+
+
 }
