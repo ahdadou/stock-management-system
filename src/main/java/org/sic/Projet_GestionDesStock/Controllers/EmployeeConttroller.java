@@ -1,8 +1,12 @@
 package org.sic.Projet_GestionDesStock.Controllers;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.sic.Projet_GestionDesStock.entity.Employee;
+import org.sic.Projet_GestionDesStock.entity.Role;
+import org.sic.Projet_GestionDesStock.repository.RoleRespository;
 import org.sic.Projet_GestionDesStock.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +27,41 @@ public class EmployeeConttroller {
 	@Autowired
 	private EmployeeService employeeService;
 	// get all Employees
+	@Autowired
+	private RoleRespository roleRespository;
+
+
+	@PostMapping("/register")
+	public ResponseEntity<?> saveItem(@RequestBody EmployeeRequest employeeRequest) {
+		try {
+			Employee appuser = employeeService.findUserByUsername(employeeRequest.getUsername());
+
+			if(appuser != null) throw new RuntimeException("this employee Username already exists");
+
+			Employee employee = new Employee();
+			employee.setName(employeeRequest.getName());
+			employee.setPassword(employeeRequest.getPassword());
+			employee.setUsername(employeeRequest.getUsername());
+
+			Collection<Role> roles = new ArrayList<>();
+			Role role = roleRespository.findByRoleName(employeeRequest.getRole());
+			if(role!=null)
+				roles.add(role);
+			else
+				roles.add(roleRespository.findByRoleName("SOUS_ADMIN"));
+			employee.setRoles(roles);
+
+
+			employee = employeeService.saveItem(employee);
+//			employeeService.addRoleToEmployee(employee.getUsername(),employeeRequest.getRole());
+
+
+
+			return new ResponseEntity<>(employee, HttpStatus.OK);
+		} catch (Exception ex) {
+			return new ResponseEntity<>("CAN'T ADD Employee", HttpStatus.BAD_REQUEST);
+		}
+	}
 
 	@GetMapping(value = "/Employees/list")
 	public ResponseEntity<List<Employee>> getAll() {

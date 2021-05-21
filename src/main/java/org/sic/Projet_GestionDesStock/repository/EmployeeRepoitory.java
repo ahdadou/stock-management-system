@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EmployeeRepoitory extends JpaRepository<Employee, Long> {
+    Employee findByUsername(String username);
 //	Optional<Category> findByRole(String Role);
 
 }

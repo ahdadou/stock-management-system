@@ -1,16 +1,13 @@
 package org.sic.Projet_GestionDesStock.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Data
@@ -24,8 +21,8 @@ public class Employee {
 	private long id;
 	@Column(length = 25)
 	private String name;
-	@Column(length = 25)
+	private String username;
 	private String password;
-	@Column(length = 25)
-	private String role;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Collection<Role> roles = new ArrayList<Role>();
 }
