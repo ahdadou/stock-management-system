@@ -7,6 +7,7 @@ import org.sic.Projet_GestionDesStock.entity.OrderProduct;
 import org.sic.Projet_GestionDesStock.entity.Ordere;
 import org.sic.Projet_GestionDesStock.entity.Product;
 import org.sic.Projet_GestionDesStock.services.CustomerService;
+import org.sic.Projet_GestionDesStock.services.MailService;
 import org.sic.Projet_GestionDesStock.services.OrderProductService;
 import org.sic.Projet_GestionDesStock.services.OrdereService;
 import org.sic.Projet_GestionDesStock.services.ProductService;
@@ -28,6 +29,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
 
 	@Autowired
+	private MailService mailService;
+
+	@Autowired
 	private OrdereService ordereService;
 
 	@Autowired
@@ -38,9 +42,6 @@ public class OrderController {
 
 	@Autowired
 	private ProductService productService;
-
-	public OrderController() {
-	}
 
 	@GetMapping("")
 	public ResponseEntity<?> getAllOrder() {
@@ -90,26 +91,21 @@ public class OrderController {
 	@PostMapping("/add")
 	public ResponseEntity<?> addToOrder(@RequestBody OrderRequest orderRequest) {
 		try {
-
 			// Create Order
 			Customer customer = customerServcie.getById(orderRequest.getIdClient());
 			Ordere order = new Ordere();
-//            order.setOrderDate(new Date());
 			order.setCustomer(customer);
 			double total = orderRequest.getLignes().stream().mapToDouble(p -> p.getTotalTTC()).sum();
 			double totaht = orderRequest.getLignes().stream().mapToDouble(p -> p.getTotalHT()).sum();
 			order.setTotal(total);
 			order.setTotalht(totaht);
 			order = ordereService.saveItem(order);
-			// System.out.println(orderRequest);
+			System.out.println(orderRequest);
 //            Add Product To Order Product
 			for (ProductRequest p : orderRequest.getLignes()) {
-				System.out.println("******************************");
-				System.out.println(p.getPrixht());
-
 				OrderProduct orderProduct = new OrderProduct();
-				Product product = productService.getById(p.getIdProduct());
-				orderProduct.setProduct(product);
+				Product poduit = productService.getById(p.getIdProduct());
+				orderProduct.setProduct(poduit);
 				orderProduct.setOrdere(order);
 				orderProduct.setTva(p.getTva());
 				orderProduct.setPrix_ht(p.getPrixht());
@@ -123,6 +119,17 @@ public class OrderController {
 		} catch (Exception ex) {
 			return new ResponseEntity<>("CAN'T DELETE CATEGORY", HttpStatus.BAD_REQUEST);
 		}
+	}
+
+//Send Pdf into Gmail
+	@PostMapping("/send")
+	public ResponseEntity<?> sendemail(
+//            @RequestPart("file") String file
+			@RequestBody EmailRequest emailRequest) throws Exception {
+
+		mailService.sendMail("Contact@gmail.com", emailRequest.getFile(), "facture de vente", "facture de vente",
+				emailRequest.getTo(), "merci de votre confiance");
+		return new ResponseEntity<>("Teesst", HttpStatus.OK);
 	}
 
 }

@@ -24,8 +24,8 @@ public class Employee {
 	private long id;
 	@Column(length = 25)
 	private String name;
-	@Column(length = 25)
+	@Column(length = 1000)
 	private String password;
-	@Column(length = 25)
 	private String role;
+
 }

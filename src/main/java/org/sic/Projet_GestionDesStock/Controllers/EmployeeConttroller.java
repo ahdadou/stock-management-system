@@ -22,8 +22,8 @@ public class EmployeeConttroller {
 
 	@Autowired
 	private EmployeeService employeeService;
-	// get all Employees
 
+	// get all Employees
 	@GetMapping(value = "/Employees/list")
 	public ResponseEntity<List<Employee>> getAll() {
 		return new ResponseEntity<>(employeeService.getAll(), HttpStatus.OK);
@@ -33,7 +33,6 @@ public class EmployeeConttroller {
 	@PostMapping("/Employee/add")
 	public ResponseEntity<?> saveItem(@RequestBody Employee employee) {
 		try {
-
 			Employee Employees = employeeService.saveItem(employee);
 			return new ResponseEntity<>(Employees, HttpStatus.OK);
 		} catch (Exception ex) {
@@ -49,7 +48,7 @@ public class EmployeeConttroller {
 			Employee Employee = employeeService.getById(id);
 			return new ResponseEntity<>(Employee, HttpStatus.OK);
 		} catch (Exception ex) {
-			return new ResponseEntity<>("UNSPECTED ERROR OCCURS :  " + ex.getMessage(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("UNSPECTED ERROR OCCURS : " + ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 	// update Employee
@@ -74,4 +73,5 @@ public class EmployeeConttroller {
 			return new ResponseEntity<>("CAN'T DELETE Employee", HttpStatus.BAD_REQUEST);
 		}
 	}
+
 }
