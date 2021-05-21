@@ -35,4 +35,13 @@ public class SupplierProduct {
 	@CreationTimestamp
 	private Date operationDate;
 
+	public SupplierProduct(Product product, Supplier supplier, double price, int quantity, Date operationDate) {
+		super();
+		this.product = product;
+		this.supplier = supplier;
+		this.price = price;
+		this.quantity = quantity;
+		this.operationDate = operationDate;
+	}
+
 }
