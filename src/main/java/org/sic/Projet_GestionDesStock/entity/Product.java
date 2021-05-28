@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -47,7 +46,7 @@ public class Product {
 	private Date updateDate;
 	private String image;
 	private int quantityStock;
-	@ManyToOne
+	@ManyToOne()
 	@JsonBackReference
 	@JoinColumn(name = "category_id")
 	private Category category;
@@ -57,16 +56,5 @@ public class Product {
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	private List<SupplierProduct> supplierProducts;
-
-	public Product(long id, String name, Category c) {
-		this.id = id;
-		this.name = name;
-		this.category = c;
-	}
-
-	public static Product getproudctInfo(long id, String name, Category c) {
-		return new Product(id, name, c);
-
-	}
 
 }

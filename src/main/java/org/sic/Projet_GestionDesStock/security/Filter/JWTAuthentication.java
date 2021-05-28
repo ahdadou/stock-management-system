@@ -52,7 +52,6 @@ public class JWTAuthentication extends UsernamePasswordAuthenticationFilter {
 				.claim("roles", user.getAuthorities()).compact();
 		Map<String, String> idtoken = new HashMap<>();
 		idtoken.put("access_token", jwtAccessToken);
-		System.out.print(jwtAccessToken);
 		response.setContentType("application/json");
 		response.addHeader(Constants.HEADE_STRING, jwtAccessToken);
 		new ObjectMapper().writeValue(response.getOutputStream(), user);

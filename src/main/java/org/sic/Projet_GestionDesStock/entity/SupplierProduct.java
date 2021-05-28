@@ -36,7 +36,6 @@ public class SupplierProduct {
 	private Date operationDate;
 
 	public SupplierProduct(Product product, Supplier supplier, double price, int quantity, Date operationDate) {
-		super();
 		this.product = product;
 		this.supplier = supplier;
 		this.price = price;

@@ -34,7 +34,9 @@ public class CategotyService {
 //    Delete Item By Id
 
 	public void deleteById(long id) {
-		categoryRepository.deleteById((long) id);
+		// categoryRepository.DeleteCatagorieProductsOfSupplier(id);
+		// categoryRepository.DeleteCatagorieProducts(id);
+		categoryRepository.deleteById(id);
 	}
 
 	public List<Product> getProducts(long id) {
