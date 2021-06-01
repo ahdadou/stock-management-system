@@ -14,6 +14,7 @@ import org.sic.Projet_GestionDesStock.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -105,6 +106,7 @@ public class OrderController {
 			for (ProductRequest p : orderRequest.getLignes()) {
 				OrderProduct orderProduct = new OrderProduct();
 				Product poduit = productService.getById(p.getIdProduct());
+				poduit.setQuantityStock(poduit.getQuantityStock()-p.getQuantity());
 				orderProduct.setProduct(poduit);
 				orderProduct.setOrdere(order);
 				orderProduct.setTva(p.getTva());
@@ -113,6 +115,7 @@ public class OrderController {
 				orderProduct.setTotalTTC(p.getTotalTTC());
 				orderProduct.setQuantity(p.getQuantity());
 				orderProductService.saveItem(orderProduct);
+				productService.updateItem(poduit);
 			}
 
 			return new ResponseEntity<>(new Ordere(), HttpStatus.OK);

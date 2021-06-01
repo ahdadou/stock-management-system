@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
-@CrossOrigin(value = "http://localhost:4200")
-
+@CrossOrigin(value = "*")
 public class SupplierController {
 
 	@Autowired
