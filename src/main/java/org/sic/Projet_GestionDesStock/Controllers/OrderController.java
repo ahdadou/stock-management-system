@@ -133,4 +133,20 @@ public class OrderController {
 		return new ResponseEntity<>("Teesst", HttpStatus.OK);
 	}
 
+	@GetMapping("/totalforthismonth")
+	public ResponseEntity<?> sumSalesByMonth(){
+		try{
+			double sum = ordereService.getTotalbyMonth();
+			return  new ResponseEntity<>(sum,HttpStatus.OK);
+		}catch (Exception ex){
+			return  new ResponseEntity<>(ex,HttpStatus.NOT_FOUND);
+		}
+
+	}
+
+
+
+
+
+
 }

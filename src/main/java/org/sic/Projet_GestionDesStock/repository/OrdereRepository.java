@@ -10,6 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.websocket.server.PathParam;
+
 @Repository
 public interface OrdereRepository extends JpaRepository<Ordere, Long> {
 
@@ -26,5 +28,8 @@ public interface OrdereRepository extends JpaRepository<Ordere, Long> {
 
 	@Query(value = "select sum(o.total) from ordere o where o.customer_id = :id", nativeQuery = true)
 	double totalByCustomer(@Param("id") long idCustomer);
+
+	@Query(value = "select sum(o.total) from ordere o where Month(order_date) = :month", nativeQuery = true)
+	double totalByMonth(@PathParam("month") int month);
 
 }

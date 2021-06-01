@@ -1,5 +1,8 @@
 package org.sic.Projet_GestionDesStock.services;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import org.sic.Projet_GestionDesStock.entity.OrderProduct;
@@ -61,5 +64,15 @@ public class OrdereService {
 	public Ordere updateItem() {
 		return null;
 	}
+
+//	Get Total By Month
+
+	public double getTotalbyMonth(){
+		Date date = new Date();
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		int month = localDate.getMonthValue();
+		return this.ordereRepository.totalByMonth(month);
+	}
+
 
 }

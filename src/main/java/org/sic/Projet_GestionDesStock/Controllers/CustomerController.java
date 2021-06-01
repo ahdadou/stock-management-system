@@ -104,4 +104,15 @@ public class CustomerController {
 		}
 	}
 
+
+	@GetMapping("/totalofcustomers")
+	public ResponseEntity<?> totalOfcCstomers(){
+		try{
+			int sum = customerService.getCount();
+			return  new ResponseEntity<>(sum,HttpStatus.OK);
+		}catch (Exception ex){
+			return  new ResponseEntity<>(ex,HttpStatus.NOT_FOUND);
+		}
+	}
+
 }

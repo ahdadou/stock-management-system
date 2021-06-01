@@ -45,4 +45,8 @@ public class SipplierService {
 		return supplierRepository.SupplierByProudctId(idProudct);
 
 	}
+
+	public int getCount() {
+		return supplierRepository.getCount();
+	}
 }
