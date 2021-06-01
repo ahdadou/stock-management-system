@@ -13,7 +13,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query(value = "select p from Category p JOIN p.products c where c.id=:id")
 	public Category products(long id);
 
-	@Query(value = "select distinct p.* from supplier_product s  inner join product p on  s.product_id = p.id where s.supplier_id =?1", nativeQuery = true)
+	@Query(value = "select distinct p.* from supplier_product s  inner join product p on  s.product_id = p.id where s.supplier_id =?", nativeQuery = true)
 	public List<Product> ProudctBYSupplierId(long id);
 
 }

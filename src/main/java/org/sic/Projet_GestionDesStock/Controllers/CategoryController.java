@@ -8,7 +8,6 @@ import org.sic.Projet_GestionDesStock.services.CategotyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/category")
 @RestController
-@CrossOrigin("*")
 public class CategoryController {
 
 	@Autowired
@@ -66,10 +64,8 @@ public class CategoryController {
 	public ResponseEntity<?> deleteCategoty(@PathVariable Long id) {
 		try {
 			categotyService.deleteById(id);
-			System.out.println("deletee");
 			return new ResponseEntity<>(new Category(), HttpStatus.OK);
 		} catch (Exception ex) {
-			System.out.println("deletee errr");
 			return new ResponseEntity<>("CAN'T DELETE CATEGORY", HttpStatus.BAD_REQUEST);
 		}
 	}

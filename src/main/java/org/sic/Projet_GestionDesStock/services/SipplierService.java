@@ -3,6 +3,7 @@ package org.sic.Projet_GestionDesStock.services;
 import java.util.List;
 
 import org.sic.Projet_GestionDesStock.entity.Supplier;
+import org.sic.Projet_GestionDesStock.helper.SupplierDetails;
 import org.sic.Projet_GestionDesStock.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,6 @@ public class SipplierService {
 
 	@Autowired
 	private SupplierRepository supplierRepository;
-	// Add Item
 
 	public Supplier saveItem(Supplier supplier) {
 		return supplierRepository.save(supplier);
@@ -41,7 +41,7 @@ public class SipplierService {
 
 	}
 
-	public List<Supplier> SupplierByProudctId(long idProudct) {
+	public List<SupplierDetails> SupplierByProudctId(long idProudct) {
 		return supplierRepository.SupplierByProudctId(idProudct);
 
 	}
