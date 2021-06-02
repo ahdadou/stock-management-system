@@ -47,9 +47,10 @@ public class CustomerService {
 		return ordereRepository.totalByCustomer(id);
 	}
 
-//    Update Item
-//	public Customer updateItem() {
-//		return null;
-//	}
+    public int getCount() {
+			return customerRepository.getCount();
+    }
+
+
 
 }

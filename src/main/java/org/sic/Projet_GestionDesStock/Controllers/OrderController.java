@@ -6,7 +6,6 @@ import org.sic.Projet_GestionDesStock.entity.Customer;
 import org.sic.Projet_GestionDesStock.entity.OrderProduct;
 import org.sic.Projet_GestionDesStock.entity.Ordere;
 import org.sic.Projet_GestionDesStock.entity.Product;
-import org.sic.Projet_GestionDesStock.helper.productDetails;
 import org.sic.Projet_GestionDesStock.services.CustomerService;
 import org.sic.Projet_GestionDesStock.services.MailService;
 import org.sic.Projet_GestionDesStock.services.OrderProductService;
@@ -104,6 +103,7 @@ public class OrderController {
 			for (ProductRequest p : orderRequest.getLignes()) {
 				OrderProduct orderProduct = new OrderProduct();
 				Product poduit = productService.getById(p.getIdProduct());
+				poduit.setQuantityStock(poduit.getQuantityStock() - p.getQuantity());
 				orderProduct.setProduct(poduit);
 				orderProduct.setOrdere(order);
 				orderProduct.setTva(p.getTva());
@@ -112,6 +112,7 @@ public class OrderController {
 				orderProduct.setTotalTTC(p.getTotalTTC());
 				orderProduct.setQuantity(p.getQuantity());
 				orderProductService.saveItem(orderProduct);
+				productService.updateItem(poduit);
 			}
 
 			return new ResponseEntity<>(new Ordere(), HttpStatus.OK);
@@ -143,16 +144,26 @@ public class OrderController {
 	}
 
 	@GetMapping("/TotalProdouctsOrdered")
-	public List<productDetails> TotalProdouctsOrdered() {
-		return ordereService.TotalProdouctsOrdered();
-		// try {
-		// return new ResponseEntity<>(ordereService.TotalProdouctsOrdered(),
-		// HttpStatus.OK);
+	public ResponseEntity<?> TotalProdouctsOrdered() {
 
-		// } catch (Exception ex) {
-		// return new ResponseEntity<>("Cannot retrive data", HttpStatus.BAD_REQUEST);
+		try {
+			return new ResponseEntity<>(ordereService.TotalProdouctsOrdered(), HttpStatus.OK);
 
-		// }
+		} catch (Exception ex) {
+			return new ResponseEntity<>("Cannot retrive data", HttpStatus.BAD_REQUEST);
+
+		}
+	}
+
+	@GetMapping("/totalforthismonth")
+	public ResponseEntity<?> sumSalesByMonth() {
+		try {
+			double sum = ordereService.getTotalbyMonth();
+			return new ResponseEntity<>(sum, HttpStatus.OK);
+		} catch (Exception ex) {
+			return new ResponseEntity<>(ex, HttpStatus.NOT_FOUND);
+		}
+
 	}
 
 }

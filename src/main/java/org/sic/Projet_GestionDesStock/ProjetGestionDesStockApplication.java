@@ -10,6 +10,7 @@ import org.springframework.boot
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
 import java.util.Random;
@@ -21,6 +22,7 @@ public class ProjetGestionDesStockApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetGestionDesStockApplication.class, args);
 	}
+
 
 
 
