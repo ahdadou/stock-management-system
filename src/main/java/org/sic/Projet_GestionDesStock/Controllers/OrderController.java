@@ -6,6 +6,7 @@ import org.sic.Projet_GestionDesStock.entity.Customer;
 import org.sic.Projet_GestionDesStock.entity.OrderProduct;
 import org.sic.Projet_GestionDesStock.entity.Ordere;
 import org.sic.Projet_GestionDesStock.entity.Product;
+import org.sic.Projet_GestionDesStock.helper.productDetails;
 import org.sic.Projet_GestionDesStock.services.CustomerService;
 import org.sic.Projet_GestionDesStock.services.MailService;
 import org.sic.Projet_GestionDesStock.services.OrderProductService;
@@ -128,6 +129,30 @@ public class OrderController {
 		mailService.sendMail("Contact@gmail.com", emailRequest.getFile(), "facture de vente", "facture de vente",
 				emailRequest.getTo(), "merci de votre confiance");
 		return new ResponseEntity<>("Teesst", HttpStatus.OK);
+	}
+
+	@GetMapping("/TotalPriceByProducts")
+	public ResponseEntity<?> TotalPriceByProducts() {
+		try {
+			return new ResponseEntity<>(ordereService.TotalPriceByProducts(), HttpStatus.OK);
+
+		} catch (Exception ex) {
+			return new ResponseEntity<>("Cannot retrive data", HttpStatus.BAD_REQUEST);
+
+		}
+	}
+
+	@GetMapping("/TotalProdouctsOrdered")
+	public List<productDetails> TotalProdouctsOrdered() {
+		return ordereService.TotalProdouctsOrdered();
+		// try {
+		// return new ResponseEntity<>(ordereService.TotalProdouctsOrdered(),
+		// HttpStatus.OK);
+
+		// } catch (Exception ex) {
+		// return new ResponseEntity<>("Cannot retrive data", HttpStatus.BAD_REQUEST);
+
+		// }
 	}
 
 }

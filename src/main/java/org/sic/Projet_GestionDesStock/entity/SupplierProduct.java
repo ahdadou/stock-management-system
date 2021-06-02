@@ -25,10 +25,10 @@ public class SupplierProduct {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference(value = "product")
 	private Product product;
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference(value = "supplier")
 	private Supplier supplier;
 	private double price;
 	private int quantity;

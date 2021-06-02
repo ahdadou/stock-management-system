@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.sic.Projet_GestionDesStock.entity.OrderProduct;
 import org.sic.Projet_GestionDesStock.entity.Ordere;
-import org.sic.Projet_GestionDesStock.entity.Product;
+import org.sic.Projet_GestionDesStock.helper.productDetails;
 import org.sic.Projet_GestionDesStock.repository.OrderProductRepository;
 import org.sic.Projet_GestionDesStock.repository.OrdereRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class OrdereService {
 
-	@Autowired private OrdereRepository ordereRepository;
+	@Autowired
+	private OrdereRepository ordereRepository;
 	@Autowired
 	private OrderProductRepository orderProductRepository;
 
@@ -35,7 +36,7 @@ public class OrdereService {
 	}
 //	Get Products Order By Id
 
-	public List<OrderProduct> getOrderProducts(long id){
+	public List<OrderProduct> getOrderProducts(long id) {
 		return orderProductRepository.getByIdOrder(id);
 	}
 
@@ -51,11 +52,18 @@ public class OrdereService {
 //	}
 
 //	Fet Total Of all Orders
-	public double getTotal(){
-		return  ordereRepository.TotalPrice();
+	public double getTotal() {
+		return ordereRepository.TotalPrice();
 	}
 
+	public List<productDetails> TotalPriceByProducts() {
+		return this.ordereRepository.TotalPriceByProducts();
+	}
 
+	public List<productDetails> TotalProdouctsOrdered() {
+
+		return this.ordereRepository.TotalProdouctsOrdered();
+	}
 
 //    Update Item
 	public Ordere updateItem() {

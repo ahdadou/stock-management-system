@@ -20,4 +20,5 @@ public interface SupplierProductRepository extends JpaRepository<SupplierProduct
 
 	@Query(value = "SELECT S.* FROM Supplier_Product Sp inner join Supplier S on S.id = Supplier_id where Sp.Product_id = ?1", nativeQuery = true)
 	List<Supplier> getSuppliersByPoduct(long idPoduct);
+
 }

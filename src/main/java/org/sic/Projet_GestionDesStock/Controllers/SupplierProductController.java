@@ -22,8 +22,7 @@ public class SupplierProductController {
 	@PostMapping(value = "/SupplierProduct/add")
 	public ResponseEntity<Object> saveItem(@RequestBody SupplierProduct supplierProduct) {
 		try {
-			supplierProductService.saveItem(supplierProduct);
-			return new ResponseEntity<>("ORDER ADDED SUCCESSFULLY", HttpStatus.OK);
+			return new ResponseEntity<>(supplierProductService.saveItem(supplierProduct), HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>("UNSPECTED ERROR OCCURS : " + ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}
