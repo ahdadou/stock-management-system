@@ -27,11 +27,11 @@ public interface OrdereRepository extends JpaRepository<Ordere, Long> {
 	double totalByCustomer(@Param("id") long idCustomer);
 
 	@Query(value = "select new org.sic.Projet_GestionDesStock.helper.productDetails( sum(total)  ,o.orderDate )from Ordere o \r\n"
-			+ " where week(o.orderDate) = week(CURRENT_TIMESTAMP)-1 group by day(o.orderDate) ORDER BY day(o.orderDate)")
+			+ " where week(o.orderDate,1) = week(CURRENT_TIMESTAMP,1)-1 group by day(o.orderDate) ORDER BY day(o.orderDate) desc")
 	List<productDetails> TotalPriceByProducts();
 
-	@Query(value = "select new org.sic.Projet_GestionDesStock.helper.productDetails( p.name ,count(*))  "
-			+ "from OrderProduct op inner join op.product p inner join op.ordere o where week(o.orderDate) = week(CURRENT_TIMESTAMP)-1 group by p.name ORDER BY p.name DESC")
+	@Query(value = "select new org.sic.Projet_GestionDesStock.helper.productDetails( p.name ,sum(op.quantity) as nombreProduct)  "
+			+ "from OrderProduct op inner join op.product p inner join op.ordere o where week(o.orderDate) = week(CURRENT_TIMESTAMP)-1 group by p.name ORDER BY nombreProduct DESC")
 	List<productDetails> TotalProdouctsOrdered();
 
 	@Query(value = "select sum(o.total) from ordere o where Month(o.order_date) = :month", nativeQuery = true)

@@ -16,4 +16,12 @@ public class SupplierDetails {
 	private double price;
 	private int quantity;
 	private Date operation_date;
+	
+	public SupplierDetails(String firstname, double price, int quantity, Date operation_date) {
+		this.firstname = firstname;
+		this.price = price;
+		this.quantity = quantity;
+		this.operation_date = operation_date;
+	}
+	
 }

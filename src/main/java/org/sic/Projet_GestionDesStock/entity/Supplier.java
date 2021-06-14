@@ -3,6 +3,7 @@ package org.sic.Projet_GestionDesStock.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ public class Supplier {
 	private String address;
 	@CreationTimestamp
 	private Date createDate;
-	@OneToMany(mappedBy = "supplier")
+	@OneToMany(mappedBy = "supplier" ,cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<SupplierProduct> supplierProducts;
 

@@ -43,8 +43,6 @@ public class ProductController {
 			Product p = objectMapper.readValue(product, Product.class);
 			double price = p.getPrice();
 			int quantity = p.getQuantityStock();
-			p.setPrice(0);
-			p.setQuantityStock(0);
 			Product produit = productService.saveItem(p);
 			Supplier S = supplierService.getById(idSupplier);
 			SupplierProduct SP = new SupplierProduct(produit, S, price, quantity, null);
@@ -100,8 +98,10 @@ public class ProductController {
 	// Update Item
 	@PutMapping(value = "/product/update")
 	public ResponseEntity<Object> updateItem(@RequestBody Product product) {
+		productService.saveItem(product);
+		System.out.print(product.getName());
+
 		try {
-			productService.saveItem(product);
 			return new ResponseEntity<>("Product is updated successfully", HttpStatus.OK);
 		} catch (Exception ex) {
 

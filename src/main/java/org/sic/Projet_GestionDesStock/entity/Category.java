@@ -2,6 +2,7 @@ package org.sic.Projet_GestionDesStock.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Category", uniqueConstraints = @UniqueConstraint(columnNames = { "name" }))
+@Table(name = "category", uniqueConstraints = @UniqueConstraint(columnNames = { "name" }))
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,6 +31,6 @@ public class Category {
 	@Column(length = 25)
 	private String name;
 	@JsonManagedReference
-	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Product> products;
 }

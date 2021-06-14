@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.sic.Projet_GestionDesStock.entity.Category;
 import org.sic.Projet_GestionDesStock.entity.Product;
+import org.sic.Projet_GestionDesStock.helper.SupplierDetails;
 import org.sic.Projet_GestionDesStock.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,7 @@ public class ProductService {
 		return productRepository.save(product);
 	}
 
-	public List<Product> ProudctBYSupplierId(long id) {
+	public List<SupplierDetails> ProudctBYSupplierId(long id) {
 		return productRepository.ProudctBYSupplierId(id);
 	}
 

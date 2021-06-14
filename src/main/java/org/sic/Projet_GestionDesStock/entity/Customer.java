@@ -42,7 +42,7 @@ public class Customer {
 	@Temporal(TemporalType.DATE)
 	private Date createDate;
 	@JsonIgnore
-	@OneToMany(mappedBy = "customer")
+	@OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
 	private List<Ordere> ordere;
 
 }

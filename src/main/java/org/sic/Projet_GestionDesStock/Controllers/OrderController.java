@@ -117,7 +117,7 @@ public class OrderController {
 
 			return new ResponseEntity<>(new Ordere(), HttpStatus.OK);
 		} catch (Exception ex) {
-			return new ResponseEntity<>("CAN'T DELETE CATEGORY", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("unespected error ocuurs", HttpStatus.BAD_REQUEST);
 		}
 	}
 
@@ -156,13 +156,13 @@ public class OrderController {
 	}
 
 	@GetMapping("/totalforthismonth")
-	public ResponseEntity<?> sumSalesByMonth() {
-		try {
-			double sum = ordereService.getTotalbyMonth();
-			return new ResponseEntity<>(sum, HttpStatus.OK);
-		} catch (Exception ex) {
-			return new ResponseEntity<>(ex, HttpStatus.NOT_FOUND);
-		}
+	public double sumSalesByMonth() {
+		// try {
+		return ordereService.getTotalbyMonth();
+		// return new ResponseEntity<>(sum, HttpStatus.OK);
+		// } catch (Exception ex) {
+		// return new ResponseEntity<>(ex, HttpStatus.NOT_FOUND);
+		// }
 
 	}
 

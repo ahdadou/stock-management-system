@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SupplierRepository extends JpaRepository<Supplier, Long> {
 
-	@Query(value = "select new org.sic.Projet_GestionDesStock.helper.SupplierDetails(p.id,p.firstname  , p.lastname,s.price, s.quantity,s.operationDate) from SupplierProduct s inner join s.supplier p where s.product.id = :id")
+	@Query(value = "select new org.sic.Projet_GestionDesStock.helper.SupplierDetails(p.id,p.firstname  , p.lastname,s.price, s.quantity,s.operationDate) from SupplierProduct s inner join s.supplier p  where s.product.id = :id")
 	public List<SupplierDetails> SupplierByProudctId(@Param("id") long id);
 
 	@Query(value = "select count(*) from supplier",nativeQuery = true)

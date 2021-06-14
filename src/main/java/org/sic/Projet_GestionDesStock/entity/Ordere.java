@@ -21,7 +21,7 @@ public class Ordere{
 
     @ManyToOne
     private Customer customer;
-    @OneToMany(mappedBy = "ordere")
+    @OneToMany(mappedBy = "ordere", cascade = CascadeType.ALL)
     private List<OrderProduct> orderProducts;
     @CreationTimestamp
     private Date orderDate;

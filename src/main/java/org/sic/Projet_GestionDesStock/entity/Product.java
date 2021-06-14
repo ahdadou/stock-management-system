@@ -3,6 +3,7 @@ package org.sic.Projet_GestionDesStock.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,17 +45,16 @@ public class Product {
 	private Date createDate;
 	@UpdateTimestamp
 	private Date updateDate;
-	private String image;
 	private int quantityStock;
 	@ManyToOne()
 	@JsonBackReference
 	@JoinColumn(name = "category_id")
 	private Category category;
 	@JsonIgnore
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "product" , cascade = CascadeType.ALL)
 	private List<OrderProduct> orderProducts;
 	@JsonIgnore
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
 	private List<SupplierProduct> supplierProducts;
 
 }

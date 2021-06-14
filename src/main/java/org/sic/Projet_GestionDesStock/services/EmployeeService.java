@@ -26,7 +26,9 @@ public class EmployeeService implements UserDetailsService {
 
 //    Add Item
 	public Employee saveItem(Employee employee) {
+
 		String pass = employee.getPassword();
+		
 		employee.setPassword(passwordEncoder.encode(pass));
 		return employeeRepoitory.save(employee);
 	}
@@ -48,6 +50,8 @@ public class EmployeeService implements UserDetailsService {
 
 //    Update Item
 	public Employee updateItem(Employee employee) {
+		String pass = employee.getPassword();
+		employee.setPassword(passwordEncoder.encode(pass));
 		return employeeRepoitory.save(employee);
 	}
 
