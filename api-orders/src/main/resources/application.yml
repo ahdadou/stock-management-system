@@ -1,0 +1,26 @@
+server:
+  port : 8085
+
+spring:
+  application:
+    name: orders
+  datasource:
+    url: jdbc:postgresql://localhost:5432/stock
+    username: postgres
+    password: postgres
+  jpa:
+    generate-ddl: true
+    hibernate-ddl-auto: create
+    properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    properties.hibernate.format-sql: true
+    show-sql: true
+
+eureka:
+  instance:
+    hostname: products
+    preferIpAddress: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true

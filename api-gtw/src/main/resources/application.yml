@@ -1,0 +1,44 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: api-gateway
+  zipkin:
+    base-url: http://localhost:9411
+  cloud:
+    gateway:
+      routes:
+        - id: ORDERS
+          uri: lb://ORDERS
+          predicates:
+            - Path=/api/v1/order/**
+          filters:
+            - AuthenticationFilter
+
+        - id: PRODUCTS
+          uri: lb://PRODUCTS
+          predicates:
+            - Path=/api/v1/product/**
+          filters:
+            - AuthenticationFilter
+
+        - id: SUPPLIERS
+          uri: lb://SUPPLIERS
+          predicates:
+            - Path=/api/v1/supplier/**
+          filters:
+            - AuthenticationFilter
+
+        - id: identity-service
+          uri: lb://IDENTITY-SERVICE
+          predicates:
+            - Path=/api/v1/auth/**
+          filters:
+            - AuthenticationFilter
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
