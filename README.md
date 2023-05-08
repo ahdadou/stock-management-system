@@ -7,3 +7,5 @@ Your Front-end SPA should be public-client and springboot micro service should b
 You can check the Keycloak provided oidc adapters. For springboot you use the keycloak provided adapter --> https://stackoverflow.com/questions/49056708/is-keycloak-behind-api-gateway-a-good-practice
 
 Similar solution using api gateway is discussed here ---> https://stackoverflow.com/questions/49056708/is-keycloak-behind-api-gateway-a-good-practice
+
+https://www.baeldung.com/spring-cloud-gateway-oauth2#bd-2-spring-cloud-gateway-as-an-oauth-20-resource-server
