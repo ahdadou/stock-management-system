@@ -8,6 +8,7 @@ Similar solution using api gateway is discussed here ---> https://stackoverflow.
 https://www.baeldung.com/spring-cloud-gateway-oauth2#bd-2-spring-cloud-gateway-as-an-oauth-20-resource-server
 
 
+
 # SENARIO 1 : Spring Gateway as OAuth 2.0 Client [LINK](https://www.baeldung.com/postman-keycloak-endpoints)
 ### DEPENDENCIES
 
@@ -74,8 +75,8 @@ https://www.baeldung.com/spring-cloud-gateway-oauth2#bd-2-spring-cloud-gateway-a
               client-id: gateway-app
               client-secret: ZhpVhhrnSU68sIeBuS48TsjGySSgoiCz
 
-# SENARIO 3 :  Spring Gateway + KEYCLOAK
-### GATEWAY
+# SENARIO 3 :  Spring Gateway + KEYCLOAK[enter link description here](https://javatodev.com/microservices-authentication-and-authorization-with-keycloak/)
+## GATEWAY
 ### DEPENDENCIES
 
      implementation'org.springframework.cloud:spring-cloud-starter-gateway'
