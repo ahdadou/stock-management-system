@@ -29,8 +29,9 @@ spring:
           uri: lb://SUPPLIERS
           predicates:
             - Path=/api/v1/supplier/**
+            - Header=X-Request-Id, \d+
           filters:
-            - TokenRelay=
+                    - TokenRelay=
 
         - id: identity-service
           uri: lb://IDENTITY-SERVICE
