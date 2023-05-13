@@ -2,6 +2,12 @@ server:
   port : 8083
 
 spring:
+  cloud.vault:
+    token: hvs.M45WEW4CxHXTG1wTvVMvxzMW
+    scheme: http
+    kv.enabled: true
+  config.import: vault://
+
   application:
     name: suppliers
   datasource:
@@ -29,3 +35,8 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     fetch-registry: true
     register-with-eureka: true
+
+
+
+
+

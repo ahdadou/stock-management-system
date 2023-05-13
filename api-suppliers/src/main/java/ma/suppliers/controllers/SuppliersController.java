@@ -3,6 +3,7 @@ package ma.suppliers.controllers;
 import ma.suppliers.entities.Suppliers;
 import ma.suppliers.services.SuppliersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,16 @@ public class SuppliersController {
     @GetMapping
     public List<Suppliers> getAllSuppliers() {
         return suppliersService.getAllSuppliers();
+    }
+
+    @Value("${spring.jpa.properties.hibernate.dialect}")
+    private String value;
+
+
+
+    @GetMapping("/test")
+    private String test(){
+        return value;
     }
 
     @GetMapping("/{id}")

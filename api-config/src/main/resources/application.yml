@@ -1,0 +1,10 @@
+server:
+  port: 8778
+
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git.uri: file:///C:/Users/ibrah/Desktop/my/projects/stocksmanager/config

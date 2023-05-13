@@ -4,68 +4,69 @@ server:
 spring:
   application:
     name: api-gateway
-  main:
-    allow-bean-definition-overriding: true
-  zipkin:
-    base-url: http://localhost:9411
-  cloud:
-    gateway:
-      routes:
-        - id: ORDERS
-          uri: lb://ORDERS
-          predicates:
-            - Path=/api/v1/order/**
-          filters:
-            - TokenRelay=
 
-        - id: PRODUCTS
-          uri: lb://PRODUCTS
-          predicates:
-            - Path=/api/v1/product/**
-          filters:
-            - TokenRelay=
-
-        - id: SUPPLIERS
-          uri: lb://SUPPLIERS
-          predicates:
-            - Path=/api/v1/supplier/**
-            - Header=X-Request-Id, \d+
-          filters:
-                    - TokenRelay=
-
-        - id: identity-service
-          uri: lb://IDENTITY-SERVICE
-          predicates:
-            - Path=/api/v1/auth/**
-          filters:
-            - TokenRelay=
-
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8080/realms/stock_manager
-      client:
-        provider:
-          keycloak:
-#            authorization-uri: http://localhost:8080/realms/stock_manager/protocol/openid-connect/auth
-#            user-info-uri: http://localhost:8086/auth/realms/stock_manager/protocol/openid-connect/userinfo
-            issuer-uri: http://localhost:8080/realms/stock_manager
-            user-name-attribute: preferred_username
-        registration:
-          stock-manager:
-            provider: keycloak
-            client-id: login-app
-            client-secret: N6eIZ1E4TaD9rWkl92y76jwjS3qWqJSZ
-            authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8080/login/oauth2/code
-            scope: openid,profile,email
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-    fetch-registry: true
-    register-with-eureka: true
+#  main:
+#    allow-bean-definition-overriding: true
+#  zipkin:
+#    base-url: http://localhost:9411
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: ORDERS
+#          uri: lb://ORDERS
+#          predicates:
+#            - Path=/api/v1/order/**
+#          filters:
+#            - TokenRelay=
+#
+#        - id: PRODUCTS
+#          uri: lb://PRODUCTS
+#          predicates:
+#            - Path=/api/v1/product/**
+#          filters:
+#            - TokenRelay=
+#
+#        - id: SUPPLIERS
+#          uri: lb://SUPPLIERS
+#          predicates:
+#            - Path=/api/v1/supplier/**
+#            - Header=X-Request-Id, \d+
+#          filters:
+#                    - TokenRelay=
+#
+#        - id: identity-service
+#          uri: lb://IDENTITY-SERVICE
+#          predicates:
+#            - Path=/api/v1/auth/**
+#          filters:
+#            - TokenRelay=
+#
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://localhost:8080/realms/stock_manager
+#      client:
+#        provider:
+#          keycloak:
+##            authorization-uri: http://localhost:8080/realms/stock_manager/protocol/openid-connect/auth
+##            user-info-uri: http://localhost:8086/auth/realms/stock_manager/protocol/openid-connect/userinfo
+#            issuer-uri: http://localhost:8080/realms/stock_manager
+#            user-name-attribute: preferred_username
+#        registration:
+#          stock-manager:
+#            provider: keycloak
+#            client-id: login-app
+#            client-secret: N6eIZ1E4TaD9rWkl92y76jwjS3qWqJSZ
+#            authorization-grant-type: authorization_code
+#            redirect-uri: http://localhost:8080/login/oauth2/code
+#            scope: openid,profile,email
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+#    fetch-registry: true
+#    register-with-eureka: true
 
 
