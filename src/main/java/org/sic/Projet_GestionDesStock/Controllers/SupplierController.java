@@ -1,7 +1,7 @@
 package org.sic.Projet_GestionDesStock.Controllers;
 
 import org.sic.Projet_GestionDesStock.entity.Supplier;
-import org.sic.Projet_GestionDesStock.services.SipplierService;
+import org.sic.Projet_GestionDesStock.services.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,20 +12,17 @@ import org.springframework.web.bind.annotation.*;
 public class SupplierController {
 
 	@Autowired
-	private SipplierService sipplierService;
-	// Add Item
+	private SupplierService sipplierService;
 
 	@PostMapping("/Supplier/add")
 	public ResponseEntity<Object> saveItem(@RequestBody Supplier supplier) {
 		try {
-			sipplierService.saveItem(supplier);
-			return new ResponseEntity<>("SUPPLIER ADDED SUCCESSFULLY", HttpStatus.OK);
+			return new ResponseEntity<>(sipplierService.saveItem(supplier), HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>("UNSPECTED ERROR OCCURS : " + ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 
-	// Get all Items
 
 	@GetMapping("/Supplier/list")
 	public ResponseEntity<Object> getAll() {
@@ -36,7 +33,6 @@ public class SupplierController {
 		}
 	}
 
-	// Get Item By Id
 	@GetMapping("/Supplier/{id}")
 	public ResponseEntity<Object> getById(@PathVariable long id) {
 		try {
@@ -45,8 +41,6 @@ public class SupplierController {
 			return new ResponseEntity<>("UNSPECTED ERROR OCCURS : " + ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-
-	// Delete Item By Id
 
 	@DeleteMapping("/Supplier/{id}")
 	public ResponseEntity<Object> deleteById(@PathVariable long id) {
@@ -63,8 +57,7 @@ public class SupplierController {
 	@PutMapping("/Supplier/update")
 	public ResponseEntity<Object> updateItem(@RequestBody Supplier supplier) {
 		try {
-			sipplierService.updateItem(supplier);
-			return new ResponseEntity<>("SUPPLIER UPDATED SUCCESSFULLY", HttpStatus.OK);
+			return new ResponseEntity<>(sipplierService.updateItem(supplier), HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>("CAN'T UPDATE SUPPLIER" + ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}
@@ -82,13 +75,9 @@ public class SupplierController {
 	@GetMapping("/supplier/totalofsupplier")
 	public ResponseEntity<?> totalOfcCstomers(){
 		try{
-			int sum = sipplierService.getCount();
-			return  new ResponseEntity<>(sum,HttpStatus.OK);
+			return  new ResponseEntity<>(sipplierService.getCount(),HttpStatus.OK);
 		}catch (Exception ex){
 			return  new ResponseEntity<>(ex,HttpStatus.NOT_FOUND);
 		}
 	}
-
-
-
 }

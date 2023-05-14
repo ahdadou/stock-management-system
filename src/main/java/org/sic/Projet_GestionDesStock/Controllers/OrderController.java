@@ -1,26 +1,14 @@
 package org.sic.Projet_GestionDesStock.Controllers;
 
-import java.util.List;
-
-import org.sic.Projet_GestionDesStock.entity.Customer;
-import org.sic.Projet_GestionDesStock.entity.OrderProduct;
+import org.sic.Projet_GestionDesStock.dto.EmailRequest;
+import org.sic.Projet_GestionDesStock.dto.OrderRequest;
 import org.sic.Projet_GestionDesStock.entity.Ordere;
-import org.sic.Projet_GestionDesStock.entity.Product;
-import org.sic.Projet_GestionDesStock.services.CustomerService;
 import org.sic.Projet_GestionDesStock.services.MailService;
-import org.sic.Projet_GestionDesStock.services.OrderProductService;
 import org.sic.Projet_GestionDesStock.services.OrdereService;
-import org.sic.Projet_GestionDesStock.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/order")
@@ -31,15 +19,6 @@ public class OrderController {
 
 	@Autowired
 	private OrdereService ordereService;
-
-	@Autowired
-	private CustomerService customerServcie;
-
-	@Autowired
-	private OrderProductService orderProductService;
-
-	@Autowired
-	private ProductService productService;
 
 	@GetMapping("")
 	public ResponseEntity<?> getAllOrder() {
@@ -60,10 +39,8 @@ public class OrderController {
 	public ResponseEntity<?> getOrderById(@PathVariable long id) {
 		try {
 			return new ResponseEntity<>(ordereService.getById(id), HttpStatus.OK);
-
 		} catch (Exception ex) {
 			return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
-
 		}
 	}
 
@@ -71,10 +48,7 @@ public class OrderController {
 	public ResponseEntity<?> getOrderProductById(@PathVariable long id) {
 		System.out.println(id);
 		try {
-			List<OrderProduct> list = ordereService.getOrderProducts(id);
-			System.out.println(list.stream().count());
 			return new ResponseEntity<>(ordereService.getOrderProducts(id), HttpStatus.OK);
-
 		} catch (Exception ex) {
 			return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
 
@@ -89,42 +63,16 @@ public class OrderController {
 	@PostMapping("/add")
 	public ResponseEntity<?> addToOrder(@RequestBody OrderRequest orderRequest) {
 		try {
-			// Create Order
-			Customer customer = customerServcie.getById(orderRequest.getIdClient());
-			Ordere order = new Ordere();
-			order.setCustomer(customer);
-			double total = orderRequest.getLignes().stream().mapToDouble(p -> p.getTotalTTC()).sum();
-			double totaht = orderRequest.getLignes().stream().mapToDouble(p -> p.getTotalHT()).sum();
-			order.setTotal(total);
-			order.setTotalht(totaht);
-			order = ordereService.saveItem(order);
-			System.out.println(orderRequest);
-//            Add Product To Order Product
-			for (ProductRequest p : orderRequest.getLignes()) {
-				OrderProduct orderProduct = new OrderProduct();
-				Product poduit = productService.getById(p.getIdProduct());
-				poduit.setQuantityStock(poduit.getQuantityStock() - p.getQuantity());
-				orderProduct.setProduct(poduit);
-				orderProduct.setOrdere(order);
-				orderProduct.setTva(p.getTva());
-				orderProduct.setPrix_ht(p.getPrixht());
-				orderProduct.setTotalHT(p.getTotalHT());
-				orderProduct.setTotalTTC(p.getTotalTTC());
-				orderProduct.setQuantity(p.getQuantity());
-				orderProductService.saveItem(orderProduct);
-				productService.updateItem(poduit);
-			}
+			return new ResponseEntity<>(ordereService.addOrder(orderRequest), HttpStatus.OK);
+		}catch (Exception exception){
+
+		}
 
 			return new ResponseEntity<>(new Ordere(), HttpStatus.OK);
-		} catch (Exception ex) {
-			return new ResponseEntity<>("unespected error ocuurs", HttpStatus.BAD_REQUEST);
-		}
 	}
 
-//Send Pdf into Gmail
 	@PostMapping("/send")
 	public ResponseEntity<?> sendemail(
-//            @RequestPart("file") String file
 			@RequestBody EmailRequest emailRequest) throws Exception {
 
 		mailService.sendMail("Contact@gmail.com", emailRequest.getFile(), "facture de vente", "facture de vente",
@@ -136,7 +84,6 @@ public class OrderController {
 	public ResponseEntity<?> TotalPriceByProducts() {
 		try {
 			return new ResponseEntity<>(ordereService.TotalPriceByProducts(), HttpStatus.OK);
-
 		} catch (Exception ex) {
 			return new ResponseEntity<>("Cannot retrive data", HttpStatus.BAD_REQUEST);
 
@@ -145,25 +92,19 @@ public class OrderController {
 
 	@GetMapping("/TotalProdouctsOrdered")
 	public ResponseEntity<?> TotalProdouctsOrdered() {
-
 		try {
 			return new ResponseEntity<>(ordereService.TotalProdouctsOrdered(), HttpStatus.OK);
-
 		} catch (Exception ex) {
 			return new ResponseEntity<>("Cannot retrive data", HttpStatus.BAD_REQUEST);
-
 		}
 	}
 
 	@GetMapping("/totalforthismonth")
-	public double sumSalesByMonth() {
-		// try {
-		return ordereService.getTotalbyMonth();
-		// return new ResponseEntity<>(sum, HttpStatus.OK);
-		// } catch (Exception ex) {
-		// return new ResponseEntity<>(ex, HttpStatus.NOT_FOUND);
-		// }
-
+	public ResponseEntity<?> sumSalesByMonth() {
+		 try {
+		 	return new ResponseEntity<>(ordereService.getTotalbyMonth(), HttpStatus.OK);
+		 } catch (Exception ex) {
+			 return new ResponseEntity<>(ex, HttpStatus.NOT_FOUND);
+		 }
 	}
-
 }

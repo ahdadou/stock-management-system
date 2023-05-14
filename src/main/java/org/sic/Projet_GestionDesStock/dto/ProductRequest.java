@@ -1,20 +1,11 @@
-package org.sic.Projet_GestionDesStock.Controllers;
+package org.sic.Projet_GestionDesStock.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-@Data @NoArgsConstructor
-public class OrderRequest {
-
-    private long idClient;
-    private List<ProductRequest> lignes;
-
-}
-
-@Data @NoArgsConstructor
-class ProductRequest{
+@Data
+@NoArgsConstructor
+public class ProductRequest{
     private long idProduct;
     private double prixht;
     private double totalHT;

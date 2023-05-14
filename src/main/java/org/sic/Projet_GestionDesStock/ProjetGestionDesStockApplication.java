@@ -1,9 +1,7 @@
 package org.sic.Projet_GestionDesStock;
 
-import org.sic.Projet_GestionDesStock.entity.Category;
-import org.sic.Projet_GestionDesStock.entity.Customer;
-import org.sic.Projet_GestionDesStock.entity.Product;
-import org.sic.Projet_GestionDesStock.entity.Supplier;
+import org.sic.Projet_GestionDesStock.entity.*;
+import org.sic.Projet_GestionDesStock.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot
 		.CommandLineRunner;
@@ -21,6 +19,21 @@ public class ProjetGestionDesStockApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetGestionDesStockApplication.class, args);
+	}
+
+
+	@Autowired
+	private EmployeeService employeeService;
+
+	@Bean
+	CommandLineRunner run(){
+		return etc -> {
+//			Employee employee = new Employee();
+//			employee.setName("admin");
+//			employee.setRole("admin");
+//			employee.setPassword("admin");
+//			employeeService.saveItem(employee);
+		};
 	}
 
 
