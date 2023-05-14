@@ -21,21 +21,8 @@ public class MailService {
     private JavaMailSender mailSender;
 
     public void sendMail(String from,String file, String subject,String personel, String toAddresses,  String body) throws MessagingException, UnsupportedEncodingException {
-
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        message.setFrom(from);
-//        message.setTo(toAddresses);
-//        message.setSubject(subject);
-//        message.setText(body);
-
-//************Decode Pdf From String64 to Byte
+        logger.info("SEND MAIL TO => " + toAddresses);
         byte[] decoder = Base64.getDecoder().decode(file);
-//        Files.createDirectories(Paths.get("src/main/resources/static/images/products/"+product.getProduct_id()+"/"));
-//        BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/test.pdf")));
-//        stream.write(decoder);
-//        stream.close();
-
-
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message,true);
         mimeMessageHelper.setFrom(from,personel);
@@ -43,15 +30,6 @@ public class MailService {
         mimeMessageHelper.setSubject(subject);
         mimeMessageHelper.setText(body,true);
         mimeMessageHelper.addAttachment("file.pdf",new ByteArrayResource(decoder));
-
-
-
         mailSender.send(message);
-
-
-        mailSender.send(message);
-
-
-
     }
 }

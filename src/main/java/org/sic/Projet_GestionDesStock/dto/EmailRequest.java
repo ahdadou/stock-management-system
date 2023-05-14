@@ -1,4 +1,4 @@
-package org.sic.Projet_GestionDesStock.Controllers;
+package org.sic.Projet_GestionDesStock.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -18,7 +18,6 @@ public class SupplierProductController {
 	@Autowired
 	private SupplierProductService supplierProductService;
 
-	// Add Item
 	@PostMapping(value = "/SupplierProduct/add")
 	public ResponseEntity<Object> saveItem(@RequestBody SupplierProduct supplierProduct) {
 		try {
@@ -28,7 +27,6 @@ public class SupplierProductController {
 		}
 	}
 
-	// Get all Items
 	@GetMapping(value = "/SupplierProduct/list")
 	public ResponseEntity<Object> getAll() {
 		try {
@@ -38,7 +36,6 @@ public class SupplierProductController {
 		}
 	}
 
-	// Get Item By Id
 
 	@GetMapping(value = "/SupplierProduct/{id}")
 	public ResponseEntity<Object> getById(@PathVariable long id) {
@@ -49,7 +46,6 @@ public class SupplierProductController {
 		}
 	}
 
-	// Delete Item By Id
 	@DeleteMapping(value = "/SupplierProduct/{id}")
 	public ResponseEntity<Object> deleteById(@PathVariable long id) {
 		try {
@@ -61,12 +57,10 @@ public class SupplierProductController {
 
 	}
 
-	// Update Item
 	@PutMapping(value = "/SupplierProduct/update")
 	public ResponseEntity<Object> updateItem(@RequestBody SupplierProduct supplierProduct) {
 		try {
-			supplierProductService.updateItem(supplierProduct);
-			return new ResponseEntity<>("ORDER UPDATED SUCCESSFULLY", HttpStatus.OK);
+			return new ResponseEntity<>(supplierProductService.updateItem(supplierProduct), HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>("CAN'T UPDATE ORDER :" + ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}

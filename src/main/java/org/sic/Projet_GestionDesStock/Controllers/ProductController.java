@@ -4,7 +4,7 @@ import org.sic.Projet_GestionDesStock.entity.Product;
 import org.sic.Projet_GestionDesStock.entity.Supplier;
 import org.sic.Projet_GestionDesStock.entity.SupplierProduct;
 import org.sic.Projet_GestionDesStock.services.ProductService;
-import org.sic.Projet_GestionDesStock.services.SipplierService;
+import org.sic.Projet_GestionDesStock.services.SupplierService;
 import org.sic.Projet_GestionDesStock.services.SupplierProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController()
@@ -28,7 +27,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	@Autowired
-	private SipplierService supplierService;
+	private SupplierService supplierService;
 	@Autowired
 	private SupplierProductService SupplierProductService;
 
@@ -37,7 +36,7 @@ public class ProductController {
 	public ResponseEntity<Object> saveItem(@RequestParam("Product") String product,
 			@RequestParam("Supplier") long idSupplier
 
-	) throws JsonMappingException, JsonProcessingException {
+	) throws JsonProcessingException {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 			Product p = objectMapper.readValue(product, Product.class);

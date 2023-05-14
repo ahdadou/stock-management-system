@@ -1,21 +1,13 @@
 package org.sic.Projet_GestionDesStock.Controllers;
 
-import java.util.List;
-
 import org.sic.Projet_GestionDesStock.entity.Category;
-import org.sic.Projet_GestionDesStock.entity.Product;
 import org.sic.Projet_GestionDesStock.services.CategotyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/category")
 @RestController
@@ -24,26 +16,24 @@ public class CategoryController {
 	@Autowired
 	private CategotyService categotyService;
 
-	@GetMapping(value = "")
+	@GetMapping
 	public ResponseEntity<List<Category>> categoryList() {
 		return new ResponseEntity<>(categotyService.getAll(), HttpStatus.OK);
 	}
 
-	@PostMapping("")
+	@PostMapping
 	public ResponseEntity<?> addCategory(@RequestBody Category category) {
 		try {
-			Category res = categotyService.saveItem(category);
-			return new ResponseEntity<>(res, HttpStatus.OK);
+			return new ResponseEntity<>(categotyService.saveItem(category), HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>("CAN'T ADD CATEGORY", HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	@GetMapping("/products/{id}")
-	public ResponseEntity<?> getProductsbyCategory(@PathVariable long id) {
+	public ResponseEntity<?> getProductByCategory(@PathVariable long id) {
 		try {
-			List<Product> products = categotyService.getProducts(id);
-			return new ResponseEntity<>(products, HttpStatus.OK);
+			return new ResponseEntity<>(categotyService.getProducts(id), HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>("CAN'T GET PRODUCTS => " + ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}
@@ -64,7 +54,7 @@ public class CategoryController {
 	public ResponseEntity<?> deleteCategoty(@PathVariable Long id) {
 		try {
 			categotyService.deleteById(id);
-			return new ResponseEntity<>(new Category(), HttpStatus.OK);
+			return new ResponseEntity<>("DELETED SUCCESSFULLY", HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>("CAN'T DELETE CATEGORY", HttpStatus.BAD_REQUEST);
 		}

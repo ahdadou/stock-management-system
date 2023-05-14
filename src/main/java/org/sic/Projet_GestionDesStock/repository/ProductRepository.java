@@ -13,9 +13,9 @@ import org.springframework.data.repository.query.Param;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 	// Optional<Product> findByName(String name);
 	@Query(value = "select p from Category p JOIN p.products c where c.id=:id")
-	public Category products(long id);
+    Category products(long id);
 
 	@Query(value = "select new org.sic.Projet_GestionDesStock.helper.SupplierDetails( s.name,p.price, p.quantity,p.operationDate) from SupplierProduct p inner join p.product s where p.supplier.id = :id")
-	public List<SupplierDetails> ProudctBYSupplierId(@Param("id") long id);
+    List<SupplierDetails> ProudctBYSupplierId(@Param("id") long id);
 
 }
