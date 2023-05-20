@@ -1,22 +1,41 @@
-# Gestion-Stock-Projet
-Application web  permettant de simplifier la gestion et l’archivage de ses Différentes opérations (Vente et achat) ainsi que la gestion de stockage de ses données (Produits, clients, fournisseurs…)
 
-# Technologies
+# Web Application - Operations Management and Archiving
 
-* Spring Boot
-* Spring Security 'JWT'
-* Spring Data Jpa
-* Lombok
-* Angular pour FrontEnd
+This is a web application built with **Spring Boot** that simplifies the management and archiving of various operations (sales and purchases), as well as the storage of data related to products, clients, and suppliers.
 
+## Technologies Used
 
+-   **Spring Boot**
+-   **Spring Security** with **JWT** (JSON Web Tokens)
+-   **Spring Data JPA**
+-   **Lombok**
+-   **Angular** for Frontend development [frontend](https://github.com/ahdadou/stock-management-system-front)
 
-# Les Règles De gestion
+## Features
 
-*	Un Produit appartient à une catégorie. 
-*	Une catégorie peut ne pas contenir ou contenir un ou plusieurs produits. 
-*	Un fournisseur peut ne pas fournir ou fournir un ou plusieurs produits. 
-*	Un client peut ne pas passer ou passer une ou plusieurs commandes. 
-*	Une commande est effectuée par un seul client. 
-*	 Chaque commande déclenche une facture. 
-*	Une commande contient un ou plusieurs produits
+-   **Operations Management:** Simplifies the management of sales and purchases, allowing users to track and organize their operations efficiently.
+-   **Archiving:** Provides a convenient way to store and access past operations, ensuring data integrity and easy retrieval.
+
+## Additional Functionality
+
+The web application includes the following additional feature:
+
+-   **Invoice Generation and Delivery:**
+    -   The application can generate invoices in PDF format based on the placed orders.
+    -   Invoices can be automatically sent to clients via email for convenient and timely delivery.
+
+## Business Rules
+
+1.  Product and Category Management:
+    
+    -   Each product belongs to a category.
+    -   A category may or may not contain one or more products.
+2.  Supplier and Product Management:
+    
+    -   A supplier may or may not provide one or more products.
+3.  Client and Order Management:
+    
+    -   A client may or may not place one or more orders.
+    -   Each order is placed by a single client.
+    -   Each order triggers an invoice.
+    -   An order can contain one or more products.
